@@ -4,8 +4,11 @@ import React, { createContext, useState, ReactNode, useContext } from 'react';
 
 interface UserContextType {
   authenticated: boolean;
-  user: string | null;
-  login: (username: string) => void;
+  user: {
+    name: string,
+    email: string
+  } | null;
+  login: (user: UserContextType['user']) => void;
   logout: () => void;
 }
 
@@ -20,11 +23,11 @@ export const useUser = () => {
 };
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<string | null>(null);
+  const [user, setUser] = useState<UserContextType['user'] | null>(null);
   const [authenticated, setAuthenticated] = useState<boolean>(false)
 
-  const login = (username: string) => {
-    setUser(username);
+  const login = (user: UserContextType['user']) => {
+    setUser(user);
     setAuthenticated(true)
   };
 
