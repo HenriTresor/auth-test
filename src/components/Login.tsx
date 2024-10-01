@@ -6,11 +6,12 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const { login } = useUser();
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    login(username);
+    login({ name: username, email: email });
     navigate('/user')
   };
 
@@ -25,6 +26,15 @@ const Login = () => {
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Enter your username"
         />
+        <br />
+        <input
+          type="email"
+          value={email}
+          required
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter your email ..."
+        />
+        <br />
         <button type="submit">Login</button>
       </form>
     </div>

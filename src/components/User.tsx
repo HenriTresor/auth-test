@@ -11,7 +11,8 @@ const User = () => {
 
     return (
         <div>
-            <h1>Welcome, {user}</h1>    
+            <h1>Welcome, {user?.name}</h1>
+            <p>Email: {user?.email}</p>
             <button onClick={logout}>Logout</button>
         </div>
     );
